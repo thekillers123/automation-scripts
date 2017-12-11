@@ -19,3 +19,9 @@ choco install anaconda3
 choco install pycharm-community
 
 choco install nodejs
+
+choco install ditto
+
+choco install screentogif
+
+choco install wox
