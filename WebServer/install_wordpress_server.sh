@@ -5,6 +5,7 @@
 # run with root
 # Debian 9
 
+# install necessary packages
 apt update && apt upgrade
 apt install mariadb-server mariadb-client
 apt install apache2 apache2-mod-php7.0
@@ -14,8 +15,10 @@ apt install php-apcu
 apt install python-certbot-apache
 #apt install imagemagick
 
+# configure Mariadb
 mysql_secure_installation
 
+# set up Mariadb for Wordpress
 echo '<<< Setting Up Wordpress Database >>>'
 read -p 'Input Wordpress Database Username: ' wp_user
 read -p 'Input Wordpress Database Password: ' wp_password
@@ -28,6 +31,7 @@ GRANT ALL PRIVILEGES ON ${wp_database}.* TO '${wp_user}'@'localhost';
 FLUSH PRIVILEGES;
 MYSQL_SCRIPT
 
+# install Wordpress
 wget https://wordpress.org/latest.tar.gz
 tar xpf latest.tar.gz
 rm -rf /var/www/html/*
@@ -38,9 +42,11 @@ find /var/www/html -type f -exec chmod 644 {} \;
 
 a2enmod rewrite
 
+# restart http server
 systemctl restart mariadb
 systemctl restart apache2
 
+# website configuration
 touch /etc/apache2/sites-available/zpeng.me.conf
 echo "<VirtualHost *:80>" >> /etc/apache2/sites-available/zpeng.me.conf
 echo "    ServerName www.zpeng.me" >> /etc/apache2/sites-available/zpeng.me.conf
@@ -54,6 +60,7 @@ echo "</VirtualHost>" >> /etc/apache2/sites-available/zpeng.me.conf
 
 ln -s /etc/apache2/sites-available/zpeng.me.conf /etc/apache2/sites-enabled/zpeng.me.conf
 
+# display Wordpress parameters
 echo "MySQL database created."
 echo "Database:   ${wp_database}"
 echo "Username:   ${wp_user}"
