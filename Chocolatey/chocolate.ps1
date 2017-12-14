@@ -17,17 +17,9 @@ Install Tools:
 - Screentogif
 "
 $ANS = Read-Host -Prompt '[Y]es or [N]o?'
-if ($ANS -eq "Y" -or $ANS -eq "y")
-{
-# choco install adobereader-update
-choco install foxitreader
-choco install ccleaner
-choco install 7zip
-choco install ghostscript
-choco install visualstudiocode
-choco install mendeley
-choco install hyper
-choco install screentogif
+if ($ANS -eq "Y" -or $ANS -eq "y") {
+    # choco install adobereader-update
+    choco install foxitreader ccleaner 7zip ghostscript visualstudiocode mendeley hyper screentogif
 }
 
 "
@@ -36,38 +28,32 @@ Install git:
 - GitHub
 "
 $ANS = Read-Host -Prompt '[Y]es or [N]o?'
-if ($ANS -eq "Y" -or $ANS -eq "y")
-{
-choco install gitkraken
-choco install github-desktop
+if ($ANS -eq "Y" -or $ANS -eq "y") {
+    choco install gitkraken github-desktop
 }
 
 "
 Install Android Studio
 "
 $ANS = Read-Host -Prompt '[Y]es or [N]o?'
-if ($ANS -eq "Y" -or $ANS -eq "y")
-{
-choco install androidstudio
+if ($ANS -eq "Y" -or $ANS -eq "y") {
+    choco install androidstudio
 }
 
 "
 Install Python
 "
 $ANS = Read-Host -Prompt '[Y]es or [N]o?'
-if ($ANS -eq "Y" -or $ANS -eq "y")
-{
-choco install anaconda3
-choco install pycharm-community
+if ($ANS -eq "Y" -or $ANS -eq "y") {
+    choco install anaconda3 pycharm-community
 }
 
 "
 Install Node.js
 "
 $ANS = Read-Host -Prompt '[Y]es or [N]o?'
-if ($ANS -eq "Y" -or $ANS -eq "y")
-{
-choco install nodejs
+if ($ANS -eq "Y" -or $ANS -eq "y") {
+    choco install nodejs
 }
 
 
