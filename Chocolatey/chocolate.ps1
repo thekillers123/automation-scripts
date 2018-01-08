@@ -56,4 +56,15 @@ if ($ANS -eq "Y" -or $ANS -eq "y") {
     choco install nodejs
 }
 
+"
+Microsoft Store Apps:
+- Inkscape
+- Trello
+- Ditto
+- paint.net
+- Gravit Designer
+- Snipaste
+- Slack
+- Telegram
+"
 
