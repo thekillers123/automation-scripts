@@ -50,7 +50,3 @@ echo "Enable servers"
 systemctl enable sddm
 systemctl enable NetworkManager
 systemctl enable bluetooth
-
-########################################
-echo "Install chromium"
-pacman -S chromium
