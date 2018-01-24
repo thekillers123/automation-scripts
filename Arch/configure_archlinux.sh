@@ -7,6 +7,10 @@ cp .zshrc ~
 source ~/.zshrc
 
 ########################################
+echo "Install noto fonts CJK"
+yaourt -S noto-fonts-cjk
+
+########################################
 echo "Install chromium"
 yaourt -S chromium
 
