@@ -21,3 +21,8 @@ yaourt -S android-studio
 ########################################
 echo "Install Gitkraken"
 yaourt -S gitkraken
+
+########################################
+echo "Install Atom"
+yaourt -S atom
+
