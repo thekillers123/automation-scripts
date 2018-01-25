@@ -1,28 +1,45 @@
 #!/bin/bash
 
 ########################################
-echo "Install oh-my-zsh"
-yaourt -S oh-my-zsh-git neofetch
-cp .zshrc ~
-source ~/.zshrc
+read -p 'Install oh-my-zsh? [Y]es/[N]o: ' input
+if [ "$input" == "Y" -o "$input" == "y" ]
+then
+  yaourt -S oh-my-zsh-git neofetch
+  cp .zshrc ~
+  source ~/.zshrc
+fi
 
 ########################################
-echo "Install noto fonts CJK"
-yaourt -S noto-fonts-cjk
+read -p 'Install noto fonts CJK? [Y]es/[N]o: ' input
+if [ "$input" == "Y" -o "$input" == "y" ]
+then
+  yaourt -S noto-fonts-cjk
+fi
 
 ########################################
-echo "Install chromium"
-yaourt -S chromium
+read -p 'Install chromium? [Y]es/[N]o: ' input
+if [ "$input" == "Y" -o "$input" == "y" ]
+then
+  yaourt -S chromium
+fi
 
 ########################################
-echo "Install Android Studio"
-yaourt -S android-studio
+read -p 'Install Android Studio? [Y]es/[N]o: ' input
+if [ "$input" == "Y" -o "$input" == "y" ]
+then
+  yaourt -S android-studio
+fi
 
 ########################################
-echo "Install Gitkraken"
-yaourt -S gitkraken
+read -p 'Install Gitkraken? [Y]es/[N]o: ' input
+if [ "$input" == "Y" -o "$input" == "y" ]
+then
+  yaourt -S gitkraken
+fi
 
 ########################################
-echo "Install Atom"
-yaourt -S atom
-
+read -p 'Install Atom? [Y]es/[N]o: ' input
+if [ "$input" == "Y" -o "$input" == "y" ]
+then
+  yaourt -S atom
+fi
