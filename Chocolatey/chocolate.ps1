@@ -57,6 +57,14 @@ if ($ANS -eq "Y" -or $ANS -eq "y") {
 }
 
 "
+Install Teamviewer
+"
+$ANS = Read-Host -Prompt '[Y]es or [N]o?'
+if ($ANS -eq "Y" -or $ANS -eq "y") {
+    choco install teamviewer
+}
+
+"
 Microsoft Store Apps:
 - Inkscape
 - Trello
