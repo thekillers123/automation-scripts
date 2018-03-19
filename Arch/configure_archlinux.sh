@@ -43,3 +43,10 @@ if [ "$input" == "Y" -o "$input" == "y" ]
 then
     yaourt -S atom
 fi
+
+########################################
+read -p 'Install Papirus Theme? [Y]es/[N]o: ' input
+if [ "$input" == "Y" -o "$input" == "y" ]
+then
+    yaourt -S papirus-icon-theme-git arc-kde-git
+fi
