@@ -16,7 +16,7 @@ Install Tools:
 $ANS = Read-Host -Prompt '[Y]es or [N]o?'
 if ($ANS -eq "Y" -or $ANS -eq "y") {
     # choco install adobereader-update
-    choco install foxitreader ccleaner 7zip ghostscript visualstudiocode mendeley hyper screentogif
+    choco install ccleaner 7zip ghostscript visualstudiocode mendeley hyper screentogif
 }
 
 "
