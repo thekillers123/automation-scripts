@@ -1,13 +1,10 @@
 Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
-# Can be installed from Windows Store
-# choco install ditto
 
 # choco install wox
 
 "
 Install Tools:
-- Foxit Reader
 - CCleaner
 - 7zip
 - GhostScript
