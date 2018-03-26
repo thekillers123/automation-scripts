@@ -70,6 +70,14 @@ if ($ANS -eq "Y" -or $ANS -eq "y") {
 }
 
 "
+Install Typora
+"
+$ANS = Read-Host -Prompt '[Y]es or [N]o?'
+if ($ANS -eq "Y" -or $ANS -eq "y") {
+    choco install typora
+}
+
+"
 Microsoft Store Apps:
 - Inkscape
 - Trello
