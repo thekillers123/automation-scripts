@@ -62,6 +62,14 @@ if ($ANS -eq "Y" -or $ANS -eq "y") {
 }
 
 "
+Install Calibre
+"
+$ANS = Read-Host -Prompt '[Y]es or [N]o?'
+if ($ANS -eq "Y" -or $ANS -eq "y") {
+    choco install calibre
+}
+
+"
 Microsoft Store Apps:
 - Inkscape
 - Trello
