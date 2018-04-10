@@ -1,7 +1,14 @@
+#
+# The purpose of this script:
+#     1) Install chocolatey
+#     2) Use chocolatey to install all the softwares I need
+#
+# By: Zach Peng
+# https://zpeng.me
+#
+
+# install chocolatey
 Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-
-
-# choco install wox
 
 "
 Install Tools:
@@ -77,15 +84,14 @@ if ($ANS -eq "Y" -or $ANS -eq "y") {
     choco install typora
 }
 
-"
-Microsoft Store Apps:
-- Inkscape
-- Trello
-- Ditto
-- paint.net
-- Gravit Designer
-- Snipaste
-- Slack
-- Telegram
-"
+# Install the following softwares through Microsoft Store
+#
+# - Inkscape
+# - Trello
+# - Ditto
+# - paint.net
+# - Gravit Designer
+# - Snipaste
+# - Slack
+# - Telegram
 
