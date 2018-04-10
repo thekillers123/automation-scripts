@@ -1,7 +1,7 @@
 #
 # The purpose of this script:
 #     1) Install chocolatey
-#     2) Use chocolatey to install all the softwares I need
+#     2) Use chocolatey to install all the packages I need
 #
 # By: Zach Peng
 # https://zpeng.me
@@ -83,6 +83,10 @@ $ANS = Read-Host -Prompt '[Y]es or [N]o?'
 if ($ANS -eq "Y" -or $ANS -eq "y") {
     choco install typora
 }
+
+"If you don't want to use chocolatey to update a package, delete the corresponding folder under <C:\ProgramData\chocolatey\lib>."
+
+$ANS = Read-Host -Prompt 'Press any key to exit'
 
 # Install the following softwares through Microsoft Store
 #
