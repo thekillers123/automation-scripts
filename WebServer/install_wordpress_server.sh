@@ -8,12 +8,12 @@
 # install necessary packages
 apt update && apt upgrade
 apt install mariadb-server mariadb-client
-apt install apache2 apache2-mod-php7.0
-apt install php7.0 php7.0-mysql php7.0-curl php7.0-xml php7.0-mcrypt php7.0-zip \
-php7.0-gd php7.0-mbstring php7.0-pspell php7.0-cgi php7.0-xmlrpc php7.0-imap
+apt install apache2 apache2-mod-php7.3
+apt install php7.3 php7.3-mysql php7.3-curl php7.3-xml php7.3-zip \
+php7.3-gd php7.3-mbstring php7.3-pspell php7.3-cgi php7.3-xmlrpc php7.3-imap php7.3-bcmath php7.3-imagick
 apt install php-apcu
 apt install python-certbot-apache
-#apt install imagemagick
+apt install imagemagick
 
 # configure Mariadb
 mysql_secure_installation
