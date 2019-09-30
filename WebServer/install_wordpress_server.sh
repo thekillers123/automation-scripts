@@ -3,7 +3,7 @@
 # Script for wordpress server installation
 #
 # run with root
-# Debian 9
+# Debian 10
 
 # install necessary packages
 apt update && apt upgrade
@@ -14,6 +14,7 @@ php7.3-gd php7.3-mbstring php7.3-pspell php7.3-cgi php7.3-xmlrpc php7.3-imap php
 apt install php-apcu
 apt install python-certbot-apache
 apt install imagemagick
+apt install wget
 
 # configure Mariadb
 mysql_secure_installation
