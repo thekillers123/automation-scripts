@@ -8,11 +8,15 @@
 # install necessary packages
 apt update && apt upgrade
 apt install mariadb-server mariadb-client
-apt install apache2 apache2-mod-php7.3
+#apt install apache2 apache2-mod-php7.3
+apt install nginx
 apt install php7.3 php7.3-mysql php7.3-curl php7.3-xml php7.3-zip \
-php7.3-gd php7.3-mbstring php7.3-pspell php7.3-cgi php7.3-xmlrpc php7.3-imap php7.3-bcmath php7.3-imagick
+php7.3-gd php7.3-mbstring php7.3-pspell php7.3-cgi php7.3-xmlrpc php7.3-imap php7.3-bcmath php7.3-imagick php7.3-fpm
+
+
 apt install php-apcu
-apt install python-certbot-apache
+apt install python-certbot-nginx
+#apt install python-certbot-apache
 apt install imagemagick
 apt install wget
 
@@ -45,21 +49,29 @@ a2enmod rewrite
 
 # restart http server
 systemctl restart mariadb
-systemctl restart apache2
+#systemctl restart apache2
+
+systemctl start nginx
 
 # website configuration
-touch /etc/apache2/sites-available/zpeng.me.conf
-echo "<VirtualHost *:80>" >> /etc/apache2/sites-available/zpeng.me.conf
-echo "    ServerName www.zpeng.me" >> /etc/apache2/sites-available/zpeng.me.conf
-echo "    ServerAlias zpeng.me" >> /etc/apache2/sites-available/zpeng.me.conf
-echo "    DocumentRoot /var/www/html" >> /etc/apache2/sites-available/zpeng.me.conf
-echo "RewriteEngine on" >> /etc/apache2/sites-available/zpeng.me.conf
-echo "RewriteCond %{SERVER_NAME} =zpeng.me [OR]" >> /etc/apache2/sites-available/zpeng.me.conf
-echo "RewriteCond %{SERVER_NAME} =www.zpeng.me" >> /etc/apache2/sites-available/zpeng.me.conf
-echo "RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,QSA,R=permanent]" >> /etc/apache2/sites-available/zpeng.me.conf
-echo "</VirtualHost>" >> /etc/apache2/sites-available/zpeng.me.conf
+touch /etc/nginx/sites-available/zpeng_me
+echo "server {" >> /etc/nginx/sites-available/zpeng_me
+echo "    server_name zpeng.me www.zpeng.me;" >> /etc/nginx/sites-available/zpeng_me
+echo "    root /var/www/html;" >> /etc/nginx/sites-available/zpeng_me
+echo "    index index.php;" >> /etc/nginx/sites-available/zpeng_me
+echo "" >> /etc/nginx/sites-available/zpeng_me
+echo "    location / {" >> /etc/nginx/sites-available/zpeng_me
+echo "        try_files $uri $uri/ /index.php?$args;" >> /etc/nginx/sites-available/zpeng_me
+echo "    }" >> /etc/nginx/sites-available/zpeng_me
+echo "" >> /etc/nginx/sites-available/zpeng_me
+echo "    location ~ \.php$ {" >> /etc/nginx/sites-available/zpeng_me
+echo "        include snippets/fastcgi-php.conf;" >> /etc/nginx/sites-available/zpeng_me
+echo "        fastcgi_pass unix:/run/php/php7.3-fpm.sock;" >> /etc/nginx/sites-available/zpeng_me
+echo "    }" >> /etc/nginx/sites-available/zpeng_me
+echo "}" >> /etc/nginx/sites-available/zpeng_me
 
-ln -s /etc/apache2/sites-available/zpeng.me.conf /etc/apache2/sites-enabled/zpeng.me.conf
+rm /etc/nginx/sites-enabled/default
+ln -s /etc/nginx/sites-available/zpeng_me /etc/nginx/sites-enabled/zpeng_me
 
 # display Wordpress parameters
 echo "MySQL database created."
@@ -68,4 +80,4 @@ echo "Username:   ${wp_user}"
 echo "Password:   ${wp_password}"
 
 # Enable SSL
-# certbot --apache
+# certbot --nginx -d zpeng.me -d www.zpeng.me
