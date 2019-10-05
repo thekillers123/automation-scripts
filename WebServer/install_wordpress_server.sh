@@ -50,8 +50,7 @@ a2enmod rewrite
 # restart http server
 systemctl restart mariadb
 #systemctl restart apache2
-
-systemctl start nginx
+systemctl restart nginx
 
 # website configuration
 touch /etc/nginx/sites-available/zpeng_me
