@@ -38,10 +38,10 @@ then
 fi
 
 ########################################
-read -p 'Install Atom? [Y]es/[N]o: ' input
+read -p 'Install VSCode? [Y]es/[N]o: ' input
 if [ "$input" == "Y" -o "$input" == "y" ]
 then
-    yay -S atom
+    yay -S visual-studio-code-bin
 fi
 
 ########################################
