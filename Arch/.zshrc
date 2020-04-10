@@ -99,4 +99,8 @@ if [[ ! -d $ZSH_CACHE_DIR ]]; then
   mkdir $ZSH_CACHE_DIR
 fi
 
+#PATH="/home/rookie/julia/bin:$PATH"
+
 source $ZSH/oh-my-zsh.sh
+
+[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh

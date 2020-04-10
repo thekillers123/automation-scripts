@@ -7,8 +7,8 @@
 # arch-chroot /mnt
 
 ########################################
-echo "Setup time zone <Chicago time>"
-ln -sf /usr/share/zoneinfo/America/Chicago /etc/localtime
+echo "Setup time zone <Eastern time>"
+ln -sf /usr/share/zoneinfo/America/Indianapolis /etc/localtime
 hwclock --systohc
 
 ########################################
