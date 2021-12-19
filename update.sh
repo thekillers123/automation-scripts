@@ -5,8 +5,8 @@
 # run with root
 # Debian 10
 
-apt install php-apcu
-apt install python-certbot-nginx
+apt install php7.3-apcu
+apt install python3-certbot-nginx
 #apt install python-certbot-apache
 apt install imagemagick
 apt install wget
