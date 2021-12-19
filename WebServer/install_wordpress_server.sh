@@ -4,18 +4,52 @@
 #
 # run with root
 # Debian 10
+# Author : Riyas Rawther
+
+apt-get update; apt-get upgrade -y; apt-get install -y fail2ban ufw;
+# SSH, HTTP and HTTPS
+ufw allow 22
+ufw allow 80
+ufw allow 443
+
+# Skip the following 3 lines if you do not plan on using FTP
+#ufw allow 21 
+#ufw allow 50000:50099/tcp 
+#ufw allow out 20/tcp
+
+# And lastly we activate UFW
+ufw --force enable
+
+#Add some PPAs to stay current
+apt-get install -y software-properties-common
+apt-add-repository ppa:ondrej/apache2 -y
+apt-add-repository ppa:ondrej/php -y
+
+#Set up MariaDB repositories
+
+#apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc'
+#add-apt-repository 'deb [arch=amd64,arm64,ppc64el] http://mirror.netinch.com/pub/mariadb/repo/10.4/ubuntu focal main'
+
+#Install base packages
+apt-get update; apt-get install -y build-essential curl nano wget lftp unzip bzip2 arj nomarch lzop htop openssl gcc git binutils libmcrypt4 libpcre3-dev make python3 python3-pip supervisor unattended-upgrades whois zsh imagemagick uuid-runtime net-tools
+
+#Set the timezone to UTC
+ln -sf /usr/share/zoneinfo/UTC /etc/localtime
+
+sudo iptables -I INPUT -p tcp --dport 80 -j ACCEPT
+sudo ufw allow http
 
 # install necessary packages
 apt update && apt upgrade
 apt install mariadb-server mariadb-client
-#apt install apache2 apache2-mod-php7.3
-apt install nginx
+apt install apache2 apache2-mod-php7.3
+#apt install nginx
 apt install php7.3 php7.3-mysql php7.3-curl php7.3-xml php7.3-zip php7.3-gd php7.3-mbstring php7.3-pspell php7.3-cgi php7.3-xmlrpc php7.3-imap php7.3-bcmath php7.3-imagick php7.3-fpm
 
 
 apt install php7.3-apcu
-apt install python3-certbot-nginx
-#apt install python-certbot-apache
+#apt install python3-certbot-nginx
+apt install python3-certbot-apache
 apt install imagemagick
 apt install wget
 
@@ -48,28 +82,28 @@ a2enmod rewrite
 
 # restart http server
 systemctl restart mariadb
-#systemctl restart apache2
-systemctl restart nginx
+systemctl restart apache2
+#systemctl restart nginx
 
 # website configuration
-touch /etc/nginx/sites-available/setiugadget
-echo "server {" >> /etc/nginx/sites-available/setiugadget
-echo "    server_name setiugadget.com www.setiugadget.com;" >> /etc/nginx/sites-available/setiugadget
-echo "    root /var/www/html;" >> /etc/nginx/sites-available/setiugadget
-echo "    index index.php;" >> /etc/nginx/sites-available/setiugadget
-echo "" >> /etc/nginx/sites-available/setiugadget
-echo "    location / {" >> /etc/nginx/sites-available/setiugadget
-echo "        try_files $uri $uri/ /index.php?$args;" >> /etc/nginx/sites-available/setiugadget
-echo "    }" >> /etc/nginx/sites-available/setiugadget
-echo "" >> /etc/nginx/sites-available/setiugadget
-echo "    location ~ \.php$ {" >> /etc/nginx/sites-available/setiugadget
-echo "        include snippets/fastcgi-php.conf;" >> /etc/nginx/sites-available/setiugadget
-echo "        fastcgi_pass unix:/run/php/php7.3-fpm.sock;" >> /etc/nginx/sites-available/setiugadget
-echo "    }" >> /etc/nginx/sites-available/setiugadget
-echo "}" >> /etc/nginx/sites-available/setiugadget
+touch /etc/apache2/sites-available/setiugadget
+echo "server {" >> /etc/apache2/sites-available/setiugadget
+echo "    server_name setiugadget.com www.setiugadget.com;" >> /etc/apache2/sites-available/setiugadget
+echo "    root /var/www/html;" >> /etc/apache2/sites-available/setiugadget
+echo "    index index.php;" >> /etc/apache2/sites-available/setiugadget
+echo "" >> /etc/apache2/sites-available/setiugadget
+echo "    location / {" >> /etc/apache2/sites-available/setiugadget
+echo "        try_files $uri $uri/ /index.php?$args;" >> /etc/apache2/sites-available/setiugadget
+echo "    }" >> /etc/apache2/sites-available/setiugadget
+echo "" >> /etc/apache2/sites-available/setiugadget
+echo "    location ~ \.php$ {" >> /etc/apache2/sites-available/setiugadget
+echo "        include snippets/fastcgi-php.conf;" >> /etc/apache2/sites-available/setiugadget
+echo "        fastcgi_pass unix:/run/php/php7.3-fpm.sock;" >> /etc/apache2/sites-available/setiugadget
+echo "    }" >> /etc/apache2/sites-available/setiugadget
+echo "}" >> /etc/apache2/sites-available/setiugadget
 
-rm /etc/nginx/sites-enabled/default
-ln -s /etc/nginx/sites-available/setiugadget /etc/nginx/sites-enabled/setiugadget
+rm /etc/apache2/sites-enabled/default
+ln -s /etc/apache2/sites-available/setiugadget /etc/apache2/sites-enabled/setiugadget
 
 # display Wordpress parameters
 echo "MySQL database created."
@@ -78,4 +112,4 @@ echo "Username:   ${wp_user}"
 echo "Password:   ${wp_password}"
 
 # Enable SSL
-# certbot --nginx -d setiugadget.com -d www.setiugadget.com
+certbot --apache2 -d setiugadget.com -d www.setiugadget.com
