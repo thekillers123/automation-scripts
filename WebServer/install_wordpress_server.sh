@@ -53,24 +53,24 @@ systemctl restart mariadb
 systemctl restart nginx
 
 # website configuration
-touch /etc/nginx/sites-available/zpeng_me
-echo "server {" >> /etc/nginx/sites-available/zpeng_me
-echo "    server_name zpeng.me www.zpeng.me;" >> /etc/nginx/sites-available/zpeng_me
-echo "    root /var/www/html;" >> /etc/nginx/sites-available/zpeng_me
-echo "    index index.php;" >> /etc/nginx/sites-available/zpeng_me
-echo "" >> /etc/nginx/sites-available/zpeng_me
-echo "    location / {" >> /etc/nginx/sites-available/zpeng_me
-echo "        try_files $uri $uri/ /index.php?$args;" >> /etc/nginx/sites-available/zpeng_me
-echo "    }" >> /etc/nginx/sites-available/zpeng_me
-echo "" >> /etc/nginx/sites-available/zpeng_me
-echo "    location ~ \.php$ {" >> /etc/nginx/sites-available/zpeng_me
-echo "        include snippets/fastcgi-php.conf;" >> /etc/nginx/sites-available/zpeng_me
-echo "        fastcgi_pass unix:/run/php/php7.3-fpm.sock;" >> /etc/nginx/sites-available/zpeng_me
-echo "    }" >> /etc/nginx/sites-available/zpeng_me
-echo "}" >> /etc/nginx/sites-available/zpeng_me
+touch /etc/nginx/sites-available/setiugadget
+echo "server {" >> /etc/nginx/sites-available/setiugadget
+echo "    server_name setiugadget.com www.setiugadget.com;" >> /etc/nginx/sites-available/setiugadget
+echo "    root /var/www/html;" >> /etc/nginx/sites-available/setiugadget
+echo "    index index.php;" >> /etc/nginx/sites-available/setiugadget
+echo "" >> /etc/nginx/sites-available/setiugadget
+echo "    location / {" >> /etc/nginx/sites-available/setiugadget
+echo "        try_files $uri $uri/ /index.php?$args;" >> /etc/nginx/sites-available/setiugadget
+echo "    }" >> /etc/nginx/sites-available/setiugadget
+echo "" >> /etc/nginx/sites-available/setiugadget
+echo "    location ~ \.php$ {" >> /etc/nginx/sites-available/setiugadget
+echo "        include snippets/fastcgi-php.conf;" >> /etc/nginx/sites-available/setiugadget
+echo "        fastcgi_pass unix:/run/php/php7.3-fpm.sock;" >> /etc/nginx/sites-available/setiugadget
+echo "    }" >> /etc/nginx/sites-available/setiugadget
+echo "}" >> /etc/nginx/sites-available/setiugadget
 
 rm /etc/nginx/sites-enabled/default
-ln -s /etc/nginx/sites-available/zpeng_me /etc/nginx/sites-enabled/zpeng_me
+ln -s /etc/nginx/sites-available/setiugadget /etc/nginx/sites-enabled/setiugadget
 
 # display Wordpress parameters
 echo "MySQL database created."
@@ -79,4 +79,4 @@ echo "Username:   ${wp_user}"
 echo "Password:   ${wp_password}"
 
 # Enable SSL
-# certbot --nginx -d zpeng.me -d www.zpeng.me
+# certbot --nginx -d setiugadget.com -d www.setiugadget.com
