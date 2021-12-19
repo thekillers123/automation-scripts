@@ -13,8 +13,8 @@ apt install nginx
 apt install php7.3 php7.3-mysql php7.3-curl php7.3-xml php7.3-zip php7.3-gd php7.3-mbstring php7.3-pspell php7.3-cgi php7.3-xmlrpc php7.3-imap php7.3-bcmath php7.3-imagick php7.3-fpm
 
 
-apt install php-apcu
-apt install python-certbot-nginx
+apt install php7.3-apcu
+apt install python3-certbot-nginx
 #apt install python-certbot-apache
 apt install imagemagick
 apt install wget
